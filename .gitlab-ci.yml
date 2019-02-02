@@ -12,6 +12,7 @@ build:
   artifacts:
     paths:
     - Build/*.nupkg
+    - Build/*.snupkg
     expire_in: 1 week
 
 publish:
