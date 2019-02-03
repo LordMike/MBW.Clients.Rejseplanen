@@ -20,7 +20,6 @@ publish:
   when: manual
   script:
   - cd $CI_PROJECT_DIR/Build/
-  - dotnet nuget push -k $NUGET_KEY *.nupkg
-  - dotnet nuget push -k $NUGET_KEY *.snupkg
+  - dotnet nuget push *.nupkg -s https://api.nuget.org/v3/index.json -k $NUGET_KEY
   dependencies:
   - build
