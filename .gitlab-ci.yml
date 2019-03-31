@@ -7,8 +7,8 @@ stages:
 build:
   stage: build
   script:
-  - dotnet build
-  - dotnet pack -c Release --include-symbols -p:SymbolPackageFormat=snupkg -o $CI_PROJECT_DIR/Build/
+  - dotnet test
+  - dotnet pack -c Release --include-symbols -o $CI_PROJECT_DIR/Build/
   artifacts:
     paths:
     - Build/*.nupkg
@@ -17,7 +17,8 @@ build:
 
 publish:
   stage: publish
-  when: manual
+  only:
+    - nuget
   script:
   - cd $CI_PROJECT_DIR/Build/
   - dotnet nuget push *.nupkg -s https://api.nuget.org/v3/index.json -k $NUGET_KEY
